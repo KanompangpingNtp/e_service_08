@@ -18,7 +18,7 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span>
                                 <a href="{{ route('userForms')}}" style="text-decoration: none; color: black;">
-                                    <h5>คําขอร้องเรียน เรื่อง การทุจริตและประพฤติมิชอบของเจ้าหน้าที่ ของเทศบลเมืองต้นแบบ ๔.๐</h5>
+                                    <h5>คําขอร้องเรียนการทุจริต</h5>
                                 </a>
                             </span>
                             <div>
