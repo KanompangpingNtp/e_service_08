@@ -258,73 +258,54 @@
 
 
     <div class="container">
-        <h4>แบบคำขอร้องทั่วไป</h4><br>
+        <h4>คําขอร้องเรียน</h4>
+        <h4>เรื่อง การทุจริตและประพฤติมิชอบของเจ้าหน้าที่ ของเทศบลเมืองต้นแบบ ๔.๐</h4><br>
 
-        <p>หมายเลขคำร้องที่ ............. / .............</p>
+        {{-- <p class="right">เขียนที่ <span class="location">{{ $form->location }}</span> </p> --}}
+        <p class="right">วันที่<span class="day">{{ $form->day }}</span>เดือน<span class="month">{{ $thaiMonth  }}</span>ปี<span class="year">{{ $thaiYear  }}</span></p>
 
-        <p class="right">เขียนที่ <span class="location">{{ $form->location }}</span> </p>
-        <p style="margin-left: 320px;">วันที่<span class="day">{{ $form->day }}</span>เดือน<span class="month">{{ $thaiMonth  }}</span>ปี<span class="year">{{ $thaiYear  }}</span></p>
+        {{-- <p><b>เรื่อง</b><span class="submission_name">{{ $form->submission_name }}</span></p>
+        <p><b>เรียน</b> นายกเทศมนตรีเมืองต้นแบบ ๔.๐ </p><br> --}}
 
-        <p><b>เรื่อง</b><span class="submission_name">{{ $form->submission_name }}</span></p>
-        <p><b>เรียน</b> นายกเทศมนตรีเมืองต้นแบบ ๔.๐ </p><br>
-
-        <p style="margin-left: 55px;">ข้าพเจ้า <span class="fullname">{{ $form->fullname }}</span> อาย <span class="age">{{ $form->age }}</span>ปี อาชีพ<span class="occupation">{{ $form->occupation }}</span></p>
+        <p style="margin-left: 55px;">ข้าพเจ้า <span class="fullname">{{ $form->fullname }}</span> อาย <span class="age">{{ $form->age }}</span>ปี หมายเลขโทรศัพท์<span class="phone">{{ $form->phone }}</span> </p>
         <p>อยู่บ้านเลขที่<span class="house_no">{{ $form->house_no }}</span>หมู่ที่<span class="village_no">{{ $form->village_no }}</span>ตรอก/ซอย<span class="alley">{{ $form->alley }}</span></p>
         <p>ถนน<span class="road">{{ $form->road }}</span>แขวง/ตำบล<span class="sub_district">{{ $form->sub_district }}</span>เขต/อำเภอ<span class="district">{{ $form->district }}</span></p>
-        <p>จังหวัด<span class="province">{{ $form->province }}</span>หมายเลขโทรศัพท์<span class="phone">{{ $form->phone }}</span> </p>
+        <p>จังหวัด<span class="province">{{ $form->province }}</span></p>
+        <br>
 
-        <p style="margin-left: 55px;">ขอยื่นคำร้องต่อท่านนายกเทศบาลเมืองต้นแบบ ๔.๐ ดังนี้</p>
-        <p style="margin-left: 55px;"><span class="submission">{{ $form->submission }}</span></p>
+        <p>ชื่อ – สกุล ผู้ถูกร้องเรียน<span class="fullname">{{ $form->fullname }}</span> สังกัด<span class="location">{{ $form->location }}</span></p>
+        <p>ตําแหน่ง/ระดับ หรือข้อมูลที่สามารถบ่งชี้และสืบทราบตัวผู้ถูกกล่าวหาได้<span class="occupation">{{ $form->occupation }}</span></p>
+        <p>รายละเอียดที่ร้องเรียน<span class="submission">{{ $form->submission }}</span></p>
 
-        <p>พร้อมยินยอมให้ท่านอาจารย์หลักฐานดังต่อไปนี้ จำนวน<span class="document_count">{{ $form->document_count }}</span>ฉบับ</p>
-        <p>ข้าพเจ้ายังยอมรับว่าจำเป็นต้อง จึงลงลายมือชื่อ/ลายเซ็นผู้ร้องเพิ่มเติมไว้เป็นหลักฐาน</p>
+        <br>
 
         <table style="width: 100%; margin-top: 10px;">
             <tr>
                 <!-- คอลัมน์ซ้าย -->
                 <td style="width: 50%; vertical-align: top;">
-                    <div class="officer-note">
-                        <div class="officer-note-title">
-                            สำหรับเจ้าหน้าที่บันทึกเพิ่มเติม<br>
-                            (กรณีผู้ยื่นคำร้องไม่ยินยอมลงลายมือชื่อ)
-                        </div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <div class="dotted-line"></div>
-                        <p style="text-align: center;">ลงชื่อ..............................................</p>
-                        <p style="text-align: center;">(..........................................) </p>
-                        <p style="text-align: center;">ตำแหน่ง...........................................</p>
-                    </div>
                 </td>
 
                 <!-- คอลัมน์ขวา -->
                 <td style="width: 50%; vertical-align: top; text-align: center;">
-                    <p>ลงชื่อ<span class="fullname">{{ $form->fullname }}</span>ผู้ยื่นคำร้อง</p>
+                    <p>ลงชื่อ<span class="fullname">{{ $form->salutation }}{{ $form->fullname }}</span>ผู้ร้องเรียน</p>
                     <p>(<span class="fullname">{{ $form->fullname }}</span>)</p>
-
-                    <p>ลงชื่อ .....................................ผู้เขียน/บันทึก</p>
-                    <p>( ............................................................ )</p>
-                    <p>ความคิดเห็นปลัดเทศบาลเมืองต้นแบบ ๔.๐</p>
-                    <p>........................................................................</p>
-                    <p>........................................................................</p>
-                    <p>ลงชื่อ ................................................</p>
-                    <p>( ............................................................)</p>
-                    <p>ความคิดเห็นนายกเทศบาลเมืองต้นแบบ ๔.๐</p>
-                    <p>........................................................................</p>
-                    <p>........................................................................</p>
-                    <p>ลงชื่อ ................................................</p>
-                    <p>( ............................................................)</p>
+                    <p>วันที่<span class="day">{{ $form->day }}</span>เดือน<span class="month">{{ $thaiMonth  }}</span>ปี<span class="year">{{ $thaiYear  }}</span></p>
                 </td>
             </tr>
         </table>
 
+        <br>
+
+        <p>คําแนะนําการทําหนังสือร้องเรียนการทุจริตและประพฤติชอบ</p>
+        <p style="margin-left: 50px;">1. ข้อร้องเรียนให้ใช้ถ้อยคําสุภาพและมีรายละเอียดการร้องเรียนดังนี้</p>
+        <p style="margin-left: 60px;">1.1 ชื่อ - สกุล ที่อยู่ และหมายเลขโทรศัพท์ของผู้ร้องเรียน</p>
+        <p style="margin-left: 60px;">1.2 ชื่อ-สกุล ตําแหน่ง สังกัดผู้ถูกร้องเรียน หรือข้อมูลที่สามารถบ่งชี้และสืบทราบตัวผู้ถูกร้องเรียนได้</p>
+        <p style="margin-left: 60px;">1.3 บรรยายการกระทําที่เป็นเหตุแห่งการร้องเรียน โดยระบุข้อมูล ดังนี้</p>
+        <p style="margin-left: 70px;">(1). การกระทําที่เป็นเหตุแห่งการร้องเรียน</p>
+        <p style="margin-left: 70px;">(2). มีขั้นตอนหรือรายละเอียดการกระทํานั้นอย่างไร</p>
+        <p style="margin-left: 70px;">(3). ระบุพยานเอกสาร พยานวัตถุ พยานบุคคล (ถ้ามี)</p>
+        <p style="margin-left: 50px;">2. ลงลายมือชื่อ และเขียนชื่อ-สกุล ด้วยตัวบรรจง พร้อมแจ้งที่อยู่ของผู้ร้องเรียนให้ชัดเจนเพื่อให้เทศบาลตําบลบัว
+            บานสามารถติดต่อกับผู้ร้องเรียนได้</p>
 
     </div>
 

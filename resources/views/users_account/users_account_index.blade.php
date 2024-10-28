@@ -111,16 +111,16 @@
 
         <br>
 
-        <div class="mb-3 col-md-4">
+        {{-- <div class="mb-3 col-md-4">
             <label for="complaintName" class="form-label">ชื่อเรื่องคำขอ</label>
             <input type="text" class="form-control" id="complaintName" name="complaintName" placeholder="โปรดระบุ" required>
-        </div>
+        </div> --}}
         <div class="mb-3 col-md-7">
-            <label for="complaintDetails" class="form-label">ขอยื่นคำร้องต่อหน่วยงาน</label>
+            <label for="complaintDetails" class="form-label">รายละเอียดที่ร้องเรียน</label>
             <textarea class="form-control" id="complaintDetails" name="complaintDetails" rows="3" placeholder="โปรดระบุ" required></textarea>
         </div>
 
-        <br>
+        {{-- <br>
 
         <div class="row">
             <div class="col-md-2 mb-3">
@@ -154,7 +154,7 @@
                     container.appendChild(fileInput);
                 }
             }
-        </script>
+        </script> --}}
 
         <br>
 

@@ -46,18 +46,11 @@ class FormController extends Controller
             'district' => 'required|string|max:255',
             'province' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
-            'complaintName' => 'required|string|max:255',
+            // 'complaintName' => 'required|string|max:255',
             'complaintDetails' => 'required|string',
-            'documentNumber' => 'required|integer',
-            // 'fileUpload' => 'nullable|file|mimes:pdf,doc,docx,jpeg,png|max:2048',
-            'fileUpload.*' => 'nullable|file|mimes:pdf,doc,docx,jpeg,png|max:2048', // ใช้ .* เพื่อรองรับไฟล์หลายไฟล์
+            // 'documentNumber' => 'required|integer',
+            // 'fileUpload.*' => 'nullable|file|mimes:pdf,doc,docx,jpeg,png|max:2048', // ใช้ .* เพื่อรองรับไฟล์หลายไฟล์
         ]);
-
-        // $filePath = null;
-        // if ($request->hasFile('fileUpload')) {
-        //     // Define the file name and path
-        //     $filePath = $request->file('fileUpload')->storeAs('files', $request->file('fileUpload')->getClientOriginalName(), 'public');
-        // }
 
         // Create a new form entry
         $form = Form::create([
@@ -79,31 +72,11 @@ class FormController extends Controller
             'district' => $validatedData['district'],
             'province' => $validatedData['province'],
             'phone' => $validatedData['phone'],
-            'submission_name' => $validatedData['complaintName'],
+            'submission_name' => 'ทดลอง',
+            // 'submission_name' => $validatedData['complaintName'],
             'submission' => $validatedData['complaintDetails'],
-            'document_count' => $validatedData['documentNumber'],
+            // 'document_count' => $validatedData['documentNumber'],
         ]);
-
-        // if ($filePath) {
-        //     Attachment::create([
-        //         'form_id' => $form->id,
-        //         'file_path' => 'storage/files/' . $request->file('fileUpload')->getClientOriginalName(), // Store the path in the database
-        //     ]);
-        // }
-
-        // Handle file uploads
-        if ($request->hasFile('fileUpload')) {
-            foreach ($request->file('fileUpload') as $file) {
-                if ($file) {
-                    $filePath = $file->storeAs('files', $file->getClientOriginalName(), 'public');
-
-                    Attachment::create([
-                        'form_id' => $form->id,
-                        'file_path' => 'storage/files/' . $file->getClientOriginalName(), // Store the path in the database
-                    ]);
-                }
-            }
-        }
 
         return redirect()->back()->with('success', 'ฟอร์มถูกส่งสำเร็จ');
     }
@@ -131,11 +104,10 @@ class FormController extends Controller
             'district' => 'required|string|max:255',
             'province' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
-            'complaintName' => 'required|string|max:255',
+            // 'complaintName' => 'required|string|max:255',
             'complaintDetails' => 'required|string',
-            'documentNumber' => 'required|integer',
-            // 'fileUpload' => 'nullable|file|mimes:pdf,doc,docx,jpeg,png|max:2048',
-            'fileUpload.*' => 'nullable|file|mimes:pdf,doc,docx,jpeg,png|max:2048', // รองรับหลายไฟล์
+            // 'documentNumber' => 'required|integer',
+            // 'fileUpload.*' => 'nullable|file|mimes:pdf,doc,docx,jpeg,png|max:2048', // รองรับหลายไฟล์
         ]);
 
         // // จัดการการอัปโหลดไฟล์ถ้ามีการอัปโหลดไฟล์ใหม่
@@ -175,33 +147,34 @@ class FormController extends Controller
             'district' => $validatedData['district'],
             'province' => $validatedData['province'],
             'phone' => $validatedData['phone'],
-            'submission_name' => $validatedData['complaintName'],
+            'submission_name' => 'ทดลอง',
+            // 'submission_name' => $validatedData['complaintName'],
             'submission' => $validatedData['complaintDetails'],
-            'document_count' => $validatedData['documentNumber'],
+            // 'document_count' => $validatedData['documentNumber'],
         ]);
 
         // จัดการการอัปโหลดไฟล์ถ้ามีการอัปโหลดไฟล์ใหม่
-        if ($request->hasFile('fileUpload')) {
-            // ลบการแนบไฟล์เก่าทั้งหมด
-            $existingAttachments = Attachment::where('form_id', $form->id)->get();
-            foreach ($existingAttachments as $existingAttachment) {
-                Storage::disk('public')->delete($existingAttachment->file_path);
-                $existingAttachment->delete();
-            }
+        // if ($request->hasFile('fileUpload')) {
+        //     // ลบการแนบไฟล์เก่าทั้งหมด
+        //     $existingAttachments = Attachment::where('form_id', $form->id)->get();
+        //     foreach ($existingAttachments as $existingAttachment) {
+        //         Storage::disk('public')->delete($existingAttachment->file_path);
+        //         $existingAttachment->delete();
+        //     }
 
-            // จัดเก็บไฟล์ใหม่
-            foreach ($request->file('fileUpload') as $file) {
-                if ($file) {
-                    $filePath = $file->storeAs('files', uniqid() . '_' . $file->getClientOriginalName(), 'public');
+        //     // จัดเก็บไฟล์ใหม่
+        //     foreach ($request->file('fileUpload') as $file) {
+        //         if ($file) {
+        //             $filePath = $file->storeAs('files', uniqid() . '_' . $file->getClientOriginalName(), 'public');
 
-                    // สร้างบันทึกการแนบใหม่
-                    Attachment::create([
-                        'form_id' => $form->id,
-                        'file_path' => 'storage/' . $filePath,
-                    ]);
-                }
-            }
-        }
+        //             // สร้างบันทึกการแนบใหม่
+        //             Attachment::create([
+        //                 'form_id' => $form->id,
+        //                 'file_path' => 'storage/' . $filePath,
+        //             ]);
+        //         }
+        //     }
+        // }
 
         return redirect()->back()->with('success', 'ข้อมูลฟอร์มถูกอัปเดตสำเร็จ');
     }
